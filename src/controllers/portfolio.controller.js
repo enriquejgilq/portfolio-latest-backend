@@ -5,23 +5,20 @@ export const getPortfolio = async (req, res) => {
     console.log('Received query:', query, 'Received technology:', technology); // Registra los parámetros
 
     try {
-        // Verifica si hay un término de búsqueda
-        if (!query) {
+         if (!query) {
             return res.status(400).json({ message: 'Query parameter is required.' });
         }
 
-        // Construye un objeto de condiciones para la búsqueda
-        const conditions = {
+         const conditions = {
             $or: [
-                { name: { $regex: query, $options: 'i' } },        // Busca en nombre
-                { description: { $regex: query, $options: 'i' } } // Busca en descripción
+                { name: { $regex: query, $options: 'i' } },         
+                { description: { $regex: query, $options: 'i' } }  
             ]
         };
 
-        // Si se proporciona una tecnología, agrega a las condiciones
-        if (technology) {
-            const techArray = technology.split(',').map(tech => tech.trim()); // Convierte el string en un array
-            conditions.technology = { $in: techArray }; // Busca proyectos que contengan alguna de las tecnologías
+         if (technology) {
+            const techArray = technology.split(',').map(tech => tech.trim());  
+            conditions.technology = { $in: techArray };  
         }
 
         console.log("Search conditions:", conditions); // Registra las condiciones de búsqueda
