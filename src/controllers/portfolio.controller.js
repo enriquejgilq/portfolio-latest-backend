@@ -20,7 +20,8 @@ export const getPortfolio = async (req, res) => {
             const techArray = technology.split(',').map(tech => tech.trim());  
             conditions.technology = { $in: techArray };  
         }
-
+       
+        
         console.log("Search conditions:", conditions); // Registra las condiciones de búsqueda
 
         // Busca los proyectos que coincidan con las condiciones
