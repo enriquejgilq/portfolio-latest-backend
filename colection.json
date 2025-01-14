@@ -1,0 +1,117 @@
+[
+    {
+        "_id": {
+            "$oid": "672543a2a9f7e5de329689e3"
+        },
+        "name": "Gestor de Tareas",
+        "description": "Una aplicación web para gestionar tareas y proyectos de forma colaborativa.",
+        "technology": [
+            "Node.js",
+            "Express",
+            "MongoDB"
+        ],
+        "images": [
+            "https://example.com/gestor-tareas-1.jpg",
+            "https://example.com/gestor-tareas-2.jpg"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "672543a2a9f7e5de329689e4"
+        },
+        "name": "Sitio Web de Portafolio",
+        "description": "Portafolio personal que muestra mis proyectos y habilidades.",
+        "technology": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Next.js"
+        ],
+        "images": [
+            "https://example.com/portafolio-1.jpg",
+            "https://example.com/portafolio-2.jpg"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "672543a2a9f7e5de329689e5"
+        },
+        "name": "Aplicación de Chat en Tiempo Real",
+        "description": "Aplicación de mensajería en tiempo real para la comunicación entre usuarios.",
+        "technology": [
+            "React",
+            "Node.js",
+            "Socket.io",
+            "MongoDB"
+        ],
+        "images": [
+            "https://example.com/chat-1.jpg",
+            "https://example.com/chat-2.jpg"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "672543a2a9f7e5de329689e6"
+        },
+        "name": "Sistema de Inventario",
+        "description": "Sistema para gestionar productos y stock en una tienda.",
+        "technology": [
+            "Vue.js",
+            "Express",
+            "MongoDB"
+        ],
+        "images": [
+            "https://example.com/inventario-1.jpg",
+            "https://example.com/inventario-2.jpg"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "672543a2a9f7e5de329689e7"
+        },
+        "name": "Aplicación de Seguimiento de Hábitos",
+        "description": "App para ayudar a los usuarios a desarrollar y mantener hábitos saludables.",
+        "technology": [
+            "React Native",
+            "Node.js",
+            "MongoDB"
+        ],
+        "images": [
+            "https://example.com/habitos-1.jpg",
+            "https://example.com/habitos-2.jpg"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "672543a2a9f7e5de329689e8"
+        },
+        "name": "Gestor de Proyectos",
+        "description": "Plataforma para gestionar proyectos y recursos de manera eficiente.",
+        "technology": [
+            "Django",
+            "PostgreSQL"
+        ],
+        "images": [
+            "https://example.com/gestor-proyectos-1.jpg",
+            "https://example.com/gestor-proyectos-2.jpg"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "672543a2a9f7e5de329689e9"
+        },
+        "name": "Aplicación de Notas",
+        "description": "Aplicación simple para tomar y organizar notas.",
+        "technology": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "images": [
+            "https://example.com/notas-1.jpg",
+            "https://example.com/notas-2.jpg",
+            "https://example.com/notas-3.jpg",
+            "https://example.com/notas-4.jpg"
+        ]
+    }
+]
