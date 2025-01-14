@@ -1,0 +1,13 @@
+# folder for labels generation
+output
+
+# node modules
+node_modules
+
+# without excel files
+*.xls
+*.xlsx
+yarn.lock
+package-lock.json
+.env
+dist
