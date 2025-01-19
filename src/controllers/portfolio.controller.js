@@ -80,38 +80,48 @@ const getSuggestions = async (query) => {
 };
 
 export const searchPortfolio = async (req, res) => {
-
     const { query, page = 1, limit = 10 } = req.query;
 
     try {
-
         const allData = await Portfolio.find().lean();
-
-
+        console.log('All data:', allData);
+       
         const options = {
-            keys: ['title', 'description', 'technology', 'images'],
-            threshold: 0.3,
+            keys: ['name', 'description', 'technology', 'images'],
+            threshold: 0.3,  
         };
 
         const fuse = new Fuse(allData, options);
-
         const results = fuse.search(query);
 
-        const paginatedResults = results
-            .slice((page - 1) * limit, page * limit)
-            .map(result => result.item);
+        // Si encuentra resultados
+        if (results.length > 0) {
+            const paginatedResults = results
+                .slice((page - 1) * limit, page * limit)
+                .map(result => result.item);
 
-        res.json({
-            results: paginatedResults,
-            totalResults: results.length,
-            currentPage: Number(page),
-            totalPages: Math.ceil(results.length / limit),
+            return res.json({
+                results: paginatedResults,
+                totalResults: results.length,
+                currentPage: Number(page),
+                totalPages: Math.ceil(results.length / limit),
+            });
+        }
+
+        // Si no encuentra resultados, ajusta el threshold para sugerencias
+        const suggestionOptions = { ...options, threshold: 0.6 }; // Más tolerante
+        const suggestionFuse = new Fuse(allData, suggestionOptions);
+        const suggestions = suggestionFuse.search(query).map(s => s.item);
+
+        // Devuelve las sugerencias si están disponibles
+        return res.status(200).json({
+            message: 'No se encontraron resultados exactos.',
+            suggestions: suggestions.slice(0, 5), // Limitar a las 5 mejores sugerencias
         });
     } catch (error) {
         console.error('Error en la búsqueda:', error);
-        res.status(500).json({ message: 'Error en la búsqueda' });
+        return res.status(500).json({ message: 'Error en la búsqueda' });
     }
-
 };
 
 export const searchById = async (req, res) => {
@@ -132,3 +142,38 @@ export const searchById = async (req, res) => {
     }
 
 }
+export const createMultiplePortfolios = async (req, res) => {
+    const portfolios = req.body;   
+
+    try {
+         if (!Array.isArray(portfolios) || portfolios.length === 0) {
+            return res.status(400).json({ message: 'Debe proporcionar una lista de portafolios' });
+        }
+
+         const validPortfolios = portfolios.map((portfolio) => {
+            if (!portfolio.name || !portfolio.description || !portfolio.technology) {
+                return null;   
+            }
+            return {
+                name: portfolio.name,
+                description: portfolio.description,
+                technology: portfolio.technology,
+                images: portfolio.images || []
+            };
+        }).filter(Boolean);  
+
+        if (validPortfolios.length === 0) {
+            return res.status(400).json({ message: 'No se encontraron portafolios válidos' });
+        }
+
+         const savedPortfolios = await Portfolio.insertMany(validPortfolios);
+
+         res.status(201).json({
+            message: 'Portafolios creados exitosamente',
+            portfolios: savedPortfolios
+        });
+    } catch (error) {
+        console.error('Error al crear los portafolios:', error);
+        res.status(500).json({ message: 'Error al crear los portafolios' });
+    }
+};

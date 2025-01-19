@@ -2,7 +2,7 @@ import cors from 'cors'
 import express from 'express'
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import portfolioRoutes from './src/routes/portfolio.routes.js'
+import routes from './src/routes/routes.js'
 import { handleUndefinedRoutes } from './src/middleware/validator.middleware.js'
 
 const app = express()
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(morgan("dev"));
 app.use(express.json())
-app.use('/api', portfolioRoutes)
+app.use('/api', routes)
 app.use(handleUndefinedRoutes);
 
 
