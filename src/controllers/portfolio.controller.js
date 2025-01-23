@@ -87,7 +87,7 @@ export const searchPortfolio = async (req, res) => {
         console.log('All data:', allData);
        
         const options = {
-            keys: ['name', 'description', 'technology', 'images'],
+            keys: ['name', 'description', 'technology', 'images','works'],
             threshold: 0.3,  
         };
 
