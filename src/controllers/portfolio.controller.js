@@ -53,22 +53,14 @@ export const getPortfolio = async (req, res) => {
 };
 
 export const getAllPortfolio = async (req, res) => {
-    const { page = 1, limit = 10 } = req.query;
-
     try {
-
-        const skip = (page - 1) * limit;
-
-        const results = await Portfolio.find()
-            .skip(skip)
-            .limit(parseInt(limit));
-
-
+        const results = await Portfolio.find();  
         res.json({ results });
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los resultados' });
     }
 };
+
 
 const getSuggestions = async (query) => {
     return await Portfolio.find({
